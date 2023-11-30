@@ -8,9 +8,9 @@
         element.addEventListener('click', (event) => {
             const elementRow = parseInt(element.getAttribute('data-row'));
             const elementCol = parseInt(element.getAttribute('data-col'));
-            const test = 'X'
+           
             console.log(`Element at row ${elementRow}, col ${elementCol} was clicked`)
-            placePiece(test, elementRow, elementCol)
+            placePiece(currentPlayer, elementRow, elementCol)
         })
     })
     
@@ -96,7 +96,6 @@
         }
     }
     
-
     // gameplay loop
     function startGame() {
         let gameBoard = resetBoard(); // Assuming resetBoard() initializes and returns a new board
@@ -119,6 +118,7 @@
             currentPlayer = currentPlayer === player1 ? player2 : player1;
         }
     }
+
     
     window.startGame = startGame;
     window.gameBoard = gameBoard

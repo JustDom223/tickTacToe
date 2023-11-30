@@ -63,27 +63,41 @@
         }
         return true; // No empty spots found
     }
+
+    function resetBoard(){
+        for(row = 0; row < gameBoard.length; row++){
+            for(let col = 0; col < gameBoard[row].length; col++){
+                gameBoard[row][col] = null
+            }
+        }
+    }
     
 
     // gameplay loop
-    let gameLoop = true;
-    let currentPlayer = player1;
-    while(gameLoop){
-        placePiece(currentPlayer.marker);
-        if(!checkBoard(currentPlayer.marker)){
-            console.log(`${currentPlayer.name} wins!`)
-            currentPlayer.score++;
-            gameLoop = false
-
-        } else if (isBoardFull(gameBoard)){
-            console.log("It's a tie!")
-            gameLoop = false;
-        };
-        //Change current player
-        currentPlayer = currentPlayer === player1 ? player2 : player1;
-    };
-
+    function startGame() {
+        let gameBoard = resetBoard(); // Assuming resetBoard() initializes and returns a new board
+        let currentPlayer = player1;
+        let gameLoop = true;
     
+        while (gameLoop) {
+            placePiece(currentPlayer.marker);
+    
+            if (!checkBoard(currentPlayer.marker)) {
+                console.log(`${currentPlayer.name} wins!`);
+                currentPlayer.score++;
+                break; // Exit the loop
+            } else if (isBoardFull(gameBoard)) {
+                console.log("It's a tie!");
+                break; // Exit the loop
+            };
+    
+            // Change current player
+            currentPlayer = currentPlayer === player1 ? player2 : player1;
+        }
+    }
+    
+    // To start a game
+    startGame();
     
 
 

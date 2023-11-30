@@ -41,15 +41,28 @@
             if((gameBoard[i][0] === player && gameBoard[i][1] === player && gameBoard[i][2] === player)||
             gameBoard[0][i] === player && gameBoard[1][i] === player && gameBoard[2][i] === player){
                 return false;
-            }
+
         }
         // Check diagnals
         if((gameBoard[0][0] === player && gameBoard[1][1] === player && gameBoard[2][2] === player)||
         (gameBoard[0][2] === player && gameBoard[1][1] === player && gameBoard[2][0] === player)){
             return false;
     };
+
+        }
         return true;
     };
+    // using .length for practice for chinese checkers
+    function isBoardFull(board) {
+        for (let row = 0; row < board.length; row++) {
+            for (let col = 0; col < board[row].length; col++) {
+                if (board[row][col] === null) {
+                    return false; // Found an empty spot
+                }
+            }
+        }
+        return true; // No empty spots found
+    }
     
 
     // gameplay loop
@@ -62,8 +75,11 @@
             currentPlayer.score++;
             gameLoop = false
 
+        } else if (isBoardFull(gameBoard)){
+            console.log("It's a tie!")
+            gameLoop = false;
         };
-        // Player Turns: Create a system for player input and alternating turns.
+        //Change current player
         currentPlayer = currentPlayer === player1 ? player2 : player1;
     };
 

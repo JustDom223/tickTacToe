@@ -12,6 +12,11 @@
         this.score = 0;
     }
 // create an input to add 
+// function createPlayer(){
+
+// }
+
+
     const player1 = new Player('John', 'X');
     const player2 = new Player('Rob', 'O');
     
@@ -64,6 +69,7 @@
         return true; // No empty spots found
     }
 
+    // reset the board so that it is ready for the next game
     function resetBoard(){
         for(row = 0; row < gameBoard.length; row++){
             for(let col = 0; col < gameBoard[row].length; col++){
@@ -96,8 +102,10 @@
         }
     }
     
+    window.startGame = startGame;
+    window.gameBoard = gameBoard
     // To start a game
-    startGame();
+    // startGame();
     
 
 

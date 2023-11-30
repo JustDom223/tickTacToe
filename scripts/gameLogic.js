@@ -1,10 +1,37 @@
 // Game Setup: Define the game board as a 2D array and the players.
 (function() {
+    // get elements
+    const positionsElements = document.querySelectorAll('.positions')
+    
+    // adding eventListeners
+    positionsElements.forEach(element => {
+        element.addEventListener('click', (event) => {
+            console.log('element clicked', event.target)
+            test = 'X'
+            placePiece(test)
+        })
+    })
+    
+    
+    function placePiece(player) {
+        // reworked with eventlisteners
+        let row, col;
+        do {
+            row = prompt('Row (0, 1, or 2)?');
+            col = prompt('Column (0, 1, or 2)?');
+        } while (gameBoard[row][col]);
+        
+        gameBoard[row][col] = player;
+        displayBoard();
+    };
+    
+    
     let gameBoard = [
         [null, null, null], // First row 
         [null, null, null], // Second row
         [null, null, null]  // Third row
     ];
+
 
     function Player(name, marker){
         this.name = name;
@@ -28,17 +55,6 @@
         };
     };
 
-    function placePiece(player) {
-        // reworked with eventlisteners
-        let row, col;
-        do {
-            row = prompt('Row (0, 1, or 2)?');
-            col = prompt('Column (0, 1, or 2)?');
-        } while (gameBoard[row][col]);
-        
-        gameBoard[row][col] = player;
-        displayBoard();
-    };
     
     function checkBoard(player){
         // Check rows and columns

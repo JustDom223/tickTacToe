@@ -6,19 +6,21 @@
     // adding eventListeners
     positionsElements.forEach(element => {
         element.addEventListener('click', (event) => {
-            console.log('element clicked', event.target)
-            test = 'X'
-            placePiece(test)
+            const elementRow = parseInt(element.getAttribute('data-row'));
+            const elementCol = parseInt(element.getAttribute('data-col'));
+            const test = 'X'
+            console.log(`Element at row ${elementRow}, col ${elementCol} was clicked`)
+            placePiece(test, elementRow, elementCol)
         })
     })
     
     
-    function placePiece(player) {
+    function placePiece(player, row, col) {
         // reworked with eventlisteners
-        let row, col;
+        // let row, col;
         do {
-            row = prompt('Row (0, 1, or 2)?');
-            col = prompt('Column (0, 1, or 2)?');
+            row = row;
+            col = col;
         } while (gameBoard[row][col]);
         
         gameBoard[row][col] = player;

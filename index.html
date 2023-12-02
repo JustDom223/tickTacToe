@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>header</header>
+    <header>
+        <div id="playerCard">
+            <div>Player name</div>
+            <div>playerScore: <span id="playerScore">0</span></div>
+        </div>
+        <div id="botCard">
+            <div>Bot name</div>
+            <div>botScore: <span id="botScore">1</span></div>
+        </div>
+        <button id="startGameButton">Start Game</button>
+    </header>
     <main>
         <div class="board">
             <div id="top1" data-row="0" data-col="0" class="positions"></div>

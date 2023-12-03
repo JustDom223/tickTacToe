@@ -34,6 +34,15 @@
     function updateDOM(){
 
     }
+
+    // update score
+    playerScoreElement = document.querySelector('#playerScore')
+    botScoreElement = document.querySelector('#botScore')
+// update score needs work. its currently only for one score. 
+    function updateScore(playerScore){
+        playerScoreElement.innerText = playerScore.score
+
+    }
     
 
     function displayBoard() {
@@ -87,9 +96,10 @@
         }
 )}
 
-    function endGame(){
+    function endGame(currentPlayer){
         resetBoard()
         resetDOM()
+        updateScore(currentPlayer)
     }
     
     // get elements
@@ -113,7 +123,7 @@
                         if (!checkBoard(currentPlayer.marker)) {
                             console.log(`${currentPlayer.name} wins!`);
                             currentPlayer.score++;
-                            endGame()
+                            endGame(currentPlayer)
                         } else if (isBoardFull(gameBoard)) {
                             console.log("It's a tie!");
                             endGame()

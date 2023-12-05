@@ -112,7 +112,6 @@
                     element.innerText = currentPlayer.marker
                     console.log(`Element at row ${elementRow}, col ${elementCol} was clicked`)
                     placePiece(currentPlayer.marker, elementRow, elementCol)
-                    console.log('The if statements begin')
                     if (!checkBoard(currentPlayer.marker)) {
                         console.log(`${currentPlayer.name} wins!`);
                                 currentPlayer.score++;
@@ -129,9 +128,22 @@
                         }
             });
         });
-    }
-
-)();
+        
+        
+        
+        const playerOneNameElement = document.querySelector('#player1Name')
+        const playerTwoNameElement = document.querySelector('#player2Name')
+        
+        playerOneNameElement.addEventListener('click', () =>{
+            playerOneNameElement.innerText = `${prompt('Name player 1')} as 'X'`
+        })
+        
+        playerTwoNameElement.addEventListener('click', () =>{
+            playerTwoNameElement.innerText = `${prompt('Name player 2')} as 'O'`
+        })
+        
+    })
+();
 
 // Things to add
 // 1. Enhancing User Experience:

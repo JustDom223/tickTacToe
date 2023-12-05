@@ -1,4 +1,4 @@
-// Game Setup: Define the game board as a 2D array and the players.
+
 (function() {
 
     
@@ -19,31 +19,23 @@
 
 
     function placePiece(playerMarker, row, col) {
-        // reworked with eventlisteners
-        // let row, col;
-        do {
-            row = row;
-            col = col;
-        } while (gameBoard[row][col]);
-        
-        gameBoard[row][col] = playerMarker;
-        displayBoard();
-    };
-        
-    // Update DOM and show placements
-    function updateDOM(){
-
+        if (gameBoard[row][col] === null) {
+            gameBoard[row][col] = playerMarker;
+            displayBoard();
+        }
     }
+    
+
 
     // update score
     playerScoreElement = document.querySelector('#playerScore')
     botScoreElement = document.querySelector('#botScore')
 // update score needs work. its currently only for one score. 
-    function updateScore(playerScore){
-        playerScoreElement.innerText = playerScore.score
-
+    function updateScore(){
+        playerScoreElement.innerText = player1.score
+        botScoreElement.innerText = player2.score
+        
     }
-    
 
     function displayBoard() {
         for (let row of gameBoard) {
@@ -84,7 +76,7 @@
 
     // reset the board so that it is ready for the next game
     function resetBoard(){
-        for(row = 0; row < gameBoard.length; row++){
+        for(let row = 0; row < gameBoard.length; row++){
             for(let col = 0; col < gameBoard[row].length; col++){
                 gameBoard[row][col] = null
             }
@@ -96,49 +88,50 @@
         }
 )}
 
-    function endGame(currentPlayer){
+    function endGame(){
         resetBoard()
         resetDOM()
-        updateScore(currentPlayer)
+        updateScore()
     }
     
     // get elements
     const positionsElements = document.querySelectorAll('.positions')
-    const startGameButtonElement = document.querySelector('#startGameButton')
+    const currentPlayerMarkerElement = document.querySelector('#currentPlayerMarker')
     
-    function startGame() {
-        resetBoard(); // Assuming resetBoard() initializes and returns a new board
+        // resetBoard(); // Assuming resetBoard() initializes and returns a new board
         let currentPlayer = player1;
     
         // adding eventListeners
         positionsElements.forEach(element => {
             element.addEventListener('click', (event) => {
-                const elementRow = parseInt(element.getAttribute('data-row'));
-                const elementCol = parseInt(element.getAttribute('data-col'));
-                element.innerText = currentPlayer.marker
-            
-                console.log(`Element at row ${elementRow}, col ${elementCol} was clicked`)
-                placePiece(currentPlayer.marker, elementRow, elementCol)
-                        console.log('The if statements begin')
-                        if (!checkBoard(currentPlayer.marker)) {
-                            console.log(`${currentPlayer.name} wins!`);
-                            currentPlayer.score++;
-                            endGame(currentPlayer)
-                        } else if (isBoardFull(gameBoard)) {
-                            console.log("It's a tie!");
-                            endGame()
-                        };
-                        // Change current player
-                        currentPlayer = currentPlayer === player1 ? player2 : player1;
+                if(element.innerText === ''){
+
+                    const elementRow = parseInt(element.getAttribute('data-row'));
+                    const elementCol = parseInt(element.getAttribute('data-col'));
+                    
+                    element.innerText = currentPlayer.marker
+                    console.log(`Element at row ${elementRow}, col ${elementCol} was clicked`)
+                    placePiece(currentPlayer.marker, elementRow, elementCol)
+                    console.log('The if statements begin')
+                    if (!checkBoard(currentPlayer.marker)) {
+                        console.log(`${currentPlayer.name} wins!`);
+                                currentPlayer.score++;
+                                endGame(currentPlayer)
+                            } else if (isBoardFull(gameBoard)) {
+                                console.log("It's a tie!");
+                                endGame()
+                            };
+                            // Change current player
+                            currentPlayer = currentPlayer === player1 ? player2 : player1;
+                            currentPlayerMarkerElement.textContent = currentPlayer.marker
+                        }else{
+                            console.log('close')
+                        }
             });
         });
     }
-    // Start game button
-    startGameButtonElement.addEventListener('click', (event) => {
-        startGame()
-    })
 
-})();
+)();
 
 // Things to add
 // 1. Enhancing User Experience:

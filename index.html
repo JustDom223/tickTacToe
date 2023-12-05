@@ -8,15 +8,16 @@
 </head>
 <body>
     <header>
+        <h1>TicTacToe</h1>
         <div id="playerCard">
-            <div>Player name</div>
-            <div>playerScore: <span id="playerScore">0</span></div>
+            <div>X</div>
+            <div>Score: <span id="playerScore">0</span></div>
         </div>
         <div id="botCard">
-            <div>Bot name</div>
-            <div>botScore: <span id="botScore">1</span></div>
+            <div>O</div>
+            <div>Score: <span id="botScore">0</span></div>
         </div>
-        <button id="startGameButton">Start Game</button>
+        <!-- <button id="startGameButton">Start Game</button> -->
     </header>
     <main>
         <div class="board">
@@ -31,7 +32,7 @@
             <div id="bot3" data-row="2" data-col="2" class="positions"></div>
         </div>
     </main>
-    <footer>footer</footer>
+    <footer><div id="currentPlayer">Current player: <span id="currentPlayerMarker">X</span></div></footer>
     <script src="./scripts/gameLogic.js"></script>
     <script src="./scripts/htmlManipulation.js"></script>
 </body>
